@@ -37,6 +37,16 @@
     <script>
       $(() => {
         let socket = io.connect();
+        let $messageForm = $("#messageForm");
+        let $message = $("#message");
+        let $chat = $("#chat");
+
+        $messageForm.submit((e) => {
+          e.preventDefault();
+          console.log('Submitted');
+          socket.emit('send message', $message.val());
+          $message.val('');
+        });
       });
     </script>
 </body>
