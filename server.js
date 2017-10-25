@@ -25,7 +25,6 @@ io.sockets.on('connection', (socket) => {
 
   // Send message
   socket.on('send message', (data) => {
-    console.log(data);
     io.sockets.emit('new message', {
       msg: data
     });
