@@ -17,16 +17,22 @@ io.sockets.on('connection', (socket) => {
   connections.push(socket);
   console.log(`Connected: ${connections.length} sockets connected`);
 
-  // Disconnect
+  // client disconnects
   socket.on('disconnect', (data) => {
     connections.splice(connections.indexOf(socket), 1);
     console.log(`Disconnected: ${connections.length} sockets connected`);
   });
 
-  // Send message
+  // message from client
   socket.on('send message', (data) => {
-    io.sockets.emit('new message', {
-      msg: data
-    });
+    io.sockets.emit('new message', { msg: data });
+  });
+
+  // new client user data
+  socket.on('new user', (data, callback) => {
+    callback(true);
+    socket.username = data;  // this socket connection gets the socket user's username
+    users.push(socket.username);
+    io.sockets.emit('get users', users);
   });
 });
