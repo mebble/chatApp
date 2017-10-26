@@ -89,7 +89,7 @@
         /*-----incoming socket messages-----*/
 
         socket.on('new message', (data) => {
-          $chat.append(`<div class="well">${data.msg}</div>`);
+          $chat.append(`<div class="well"><strong>${data.username}</strong>: ${data.msg}</div>`);
         });
 
         socket.on('get users', (data) => {

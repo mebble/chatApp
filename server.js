@@ -29,7 +29,7 @@ io.sockets.on('connection', (socket) => {
 
   // message from client
   socket.on('send message', (data) => {
-    io.sockets.emit('new message', { msg: data });
+    io.sockets.emit('new message', { msg: data, username: socket.username });
   });
 
   // new client user data
