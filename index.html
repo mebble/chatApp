@@ -58,6 +58,7 @@
         let $userFormArea = $("#userFormArea");
         let $userForm = $("#userForm");
         let $username = $("#username");
+        let $users = $("#users");
 
         let $messageFormArea = $("#messageFormArea");
         let $messageForm = $("#messageForm");
@@ -89,6 +90,14 @@
 
         socket.on('new message', (data) => {
           $chat.append(`<div class="well">${data.msg}</div>`);
+        });
+
+        socket.on('get users', (data) => {
+          let html = '';
+          data.forEach((user) => {
+            html += `<li class="list-group-item">${user}</li>`;
+          });
+          $users.html(html);
         });
       });
     </script>
